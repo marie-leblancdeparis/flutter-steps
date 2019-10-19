@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
+  
   const CustomText({Key key, @required this.text}) : super(key: key);
 
   @override
