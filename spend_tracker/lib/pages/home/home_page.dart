@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spend_tracker/pages/home/widgets/menu.dart';
+import 'package:spend_tracker/pages/items/item_page.dart';
 
 class HomePage extends StatelessWidget {
   
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
       children: <Widget>[
         _TotalBudget(amount: amount),
         Container(
-          padding: EdgeInsets.only(bottom: 10),
+          padding: EdgeInsets.only(bottom: 50),
           height: MediaQuery.of(context).size.height-196,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,6 +45,35 @@ class HomePage extends StatelessWidget {
         )
       ],
     ),
+    floatingActionButton: PopupMenuButton(
+      child: Icon(Icons.add_circle,
+      size: 60,
+      color: Theme.of(context).primaryColor),
+
+      itemBuilder: (_) => [
+        PopupMenuItem(
+          value: 1,
+          child: const Text('Deposit'),
+         ), 
+         PopupMenuItem(
+           value: 2,
+           child: const Text('Withdraw')
+          ),
+      ],
+
+      onSelected: (int value) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ItemPage(
+              isDeposit: value == 1,
+            ),
+           )
+         );
+      },
+    
+     ),
+     floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
